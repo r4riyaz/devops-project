@@ -234,7 +234,7 @@ git push -u origin main
 Visit:
 
 ```
-http://<Jenkins-worker-Public-IP>:8899
+http://<Jenkins-worker-Public-IP>
 ```
 
 ---
@@ -260,7 +260,7 @@ http://<Jenkins-worker-Public-IP>:8899
 Visit:
 
 ```
-http://<Jenkins-worker-Public-IP>:8899
+http://<Jenkins-worker-Public-IP>
 ```
 
 ---
