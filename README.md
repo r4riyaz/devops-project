@@ -185,7 +185,7 @@ terraform apply
 ### ✅ 3. Configure Jenkins for Distributed Builds.
 
 - Login to you `Jenkins-server` Instance via SSH or via AWS console.
-- Get the admin password of Jenkins from `/root/initialAdminPassword`.
+- Get the admin password of Jenkins from `/root/jenkins_credentials.txt`.
 - Install `Pipeline Graph Analysis Plugin` Plugin in Jenkins and click `restart`.
 - In this section we'll configure `Jenkins-server` Instance to connect `jenkins-worker` Instance via SSH for distributed builds.
 - Follow the steps Mentioned [here](https://github.com/r4riyaz/essential-jenkins/tree/main/Ch04/04_02-ssh-agent#steps-to-configure-ssh-agent)
