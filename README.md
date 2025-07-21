@@ -82,6 +82,7 @@ resource "aws_instance" "jenkins_server" {
   }
   user_data = file("jenkins-server.sh")
 }
+
 resource "aws_instance" "jenkins_worker" {
   ami           = var.ami_id
   instance_type = "t2.micro"
@@ -93,7 +94,6 @@ resource "aws_instance" "jenkins_worker" {
   }
   
   user_data = file("jenkins-worker.sh")
-
 }
 
 resource "aws_security_group" "jenkins-server-sg" {
@@ -103,7 +103,7 @@ resource "aws_security_group" "jenkins-server-sg" {
     from_port = 0
     to_port = 0
     protocol = "-1"  #all protocols
-    cidr_blocks = [var.my_ip]
+    cidr_blocks = ["${var.my_ip}/32"]
   }
 
   egress {
@@ -113,6 +113,17 @@ resource "aws_security_group" "jenkins-server-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_security_group_rule" "github_webhook_ips" {
+  for_each          = var.github_webhook_ips
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = [each.value]
+  security_group_id = aws_security_group.jenkins-server-sg.id
+  description       = "Allow All traffic from Gihub Webhook IP ${each.value}"
 }
 
 resource "aws_security_group" "jenkins-worker-sg" {
@@ -148,7 +159,6 @@ output "jenkins_server_ip" {
 output "jenkins_worker_ip" {
   value = aws_instance.jenkins_worker.public_ip
 }
-
 ```
 
 
@@ -169,6 +179,11 @@ variable "key_name" {
 
 variable "my_ip" {
   default = "<myip>"  #add your Public IP
+}
+
+variable "github_webhook_ips" {
+  type = set(string)
+  default = [ "192.30.252.0/22", "185.199.108.0/22", "140.82.112.0/20", "143.55.64.0/20" ]  #need to update these IPs if it's get changed here https://api.github.com/meta
 }
 
 ```
