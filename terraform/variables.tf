@@ -13,3 +13,8 @@ variable "key_name" {
 variable "my_ip" {
   default = "<myip>"  #add your Public IP
 }
+
+variable "github_webhook_ips" {
+  type = set(string)
+  default = [ "192.30.252.0/22", "185.199.108.0/22", "140.82.112.0/20", "143.55.64.0/20" ]  #need to update these IPs if it's get changed here https://api.github.com/meta
+}
