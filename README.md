@@ -97,7 +97,7 @@ resource "aws_instance" "jenkins_worker" {
 }
 
 resource "aws_security_group" "jenkins-server-sg" {
-  name = "allow-all-from-my-ip"
+  name = "jenkins-server-sg"
   ingress {
     description = "Allow all inbound from my IP"
     from_port = 0
@@ -116,7 +116,7 @@ resource "aws_security_group" "jenkins-server-sg" {
 }
 
 resource "aws_security_group" "jenkins-worker-sg" {
-  name = "allow-all-from-my-ip"
+  name = "jenkins-worker-sg"
   ingress {
     description = "Allow all inbound from my IP"
     from_port = 0
