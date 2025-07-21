@@ -210,23 +210,23 @@ git push -u origin main
 
 ### ✅ 4. Configure Jenkins Pipeline
 
+- Update `Jenkinsfile` in your Github repository with your `<URL-OF-YOUR_REPO>` in `Clone Repo` stage.
 - Create a new pipeline project in your Jenkins server.
     - Select `New Item`
     - Enter item name (use the same name as your repo if possible)
     - Select `Pipeline` project
     - `OK`
-    - Select `GitHub Project` and paste in the `<URL-OF-YOUR_REPO><URL-OF-YOUR_REPO>`
+    - Select `GitHub Project` and paste in the `<URL-OF-YOUR_REPO>`
       - *NOTE: This step is optional.  It only creates a link to the repo on the project home page.*
     - Under `Build Triggers`, select the checkbox next to `GitHub hook trigger for GITScm polling`.
     - Under `Pipeline`, select `Pipeline script from SCM`.
     - Under SCM, select `Git`.
-    - Under `Repository URL`, paste in the repo URL `<URL-OF-YOUR_REPO><URL-OF-YOUR_REPO>`
+    - Under `Repository URL`, paste in the repo URL `<URL-OF-YOUR_REPO>`
     - Under `Branch Specifier (blank for 'any')`, change `master` to `main`.
     - Under `Script Path` keep it as it is `Jenkinsfile`.
     - `Save` &rarr; `Build Now`.
     - *NOTE: The project must run at least one successful build before connecting to GitHub.  This allows Jenkins to read the configuration from the repo.*
-    - `Jenkinsfile` is present here &rarr; [Jenkinsfile](./Jenkinsfile) and it'll be in your repository as well.
-
+    
 ---
 
 ### ✅ 5. Access Your Apache Website
