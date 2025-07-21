@@ -6,7 +6,7 @@ pipeline {
       steps {
         sh 'git --version'
         git branch: 'main',
-            url: 'https://github.com/r4riyaz/devops-project.git'
+            url: '<URL-OF-YOUR_REPO>'
       }
     }
 
